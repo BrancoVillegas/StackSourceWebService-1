@@ -37,6 +37,7 @@ public class DatabaseController {
             @ApiResponse(code = 404, message = "Databases Not Found"),
             @ApiResponse(code = 501, message = "Internal Server Error")
     })
+
     public ResponseEntity<List<Database>> findAllDatabases(){
         try {
             List<Database> databases = databaseService.getAll();
@@ -56,6 +57,7 @@ public class DatabaseController {
             @ApiResponse(code = 404, message = "Database Not Found"),
             @ApiResponse(code = 501, message = "Internal Server Error")
     })
+
     public ResponseEntity<Database> findDatabaseById(@PathVariable("id") Long id){
         try {
             Optional<Database> database = databaseService.getById(id);
@@ -73,6 +75,7 @@ public class DatabaseController {
             @ApiResponse(code = 400, message = "Invalid Request"),
             @ApiResponse(code = 501, message = "Internal Server Error")
     })
+
     public ResponseEntity<Database> insertDatabase(@PathVariable("id")Long digitalProfileId, @Valid @RequestBody Database database){
         try {
             Optional<DigitalProfile> digitalProfile = digitalProfileService.getById(digitalProfileId);
@@ -96,6 +99,7 @@ public class DatabaseController {
             @ApiResponse(code = 400, message = "Invalid Request"),
             @ApiResponse(code = 501, message = "Internal Server Error")
     })
+
     public ResponseEntity<Database> updateDatabase(@PathVariable("id") Long id, @Valid @RequestBody Database database){
         try {
             Optional<Database> currentDatabase = databaseService.getById(id);
@@ -116,6 +120,7 @@ public class DatabaseController {
             @ApiResponse(code = 404, message = "Database Not Found"),
             @ApiResponse(code = 501, message = "Internal Server Error")
     })
+
     public ResponseEntity<Database> deleteDatabase(@PathVariable("id") Long id){
         try {
             Optional<Database> currentDatabase = databaseService.getById(id);
@@ -135,6 +140,7 @@ public class DatabaseController {
             @ApiResponse(code = 404, message = "Databases Not Found"),
             @ApiResponse(code = 501, message = "Internal Server Error")
     })
+
     public ResponseEntity<List<Database>> findDatabasesByDigitalProfileId(@PathVariable("id") Long digitalProfileId){
         try {
             Optional<DigitalProfile> digitalProfile = digitalProfileService.getById(digitalProfileId);
@@ -156,6 +162,7 @@ public class DatabaseController {
             @ApiResponse(code = 404, message = "Databases Not Found"),
             @ApiResponse(code = 501, message = "Internal Server Error")
     })
+    
     public ResponseEntity<List<Database>> findDatabasesByDeveloperId(@PathVariable("id") Long developerId){
         try {
             Optional<Developer> developer = developerService.getById(developerId);

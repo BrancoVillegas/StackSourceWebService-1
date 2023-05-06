@@ -52,6 +52,7 @@ public class UserController {
             @ApiResponse(code = 404, message = "User Not Found"),
             @ApiResponse(code = 501, message = "Internal Server Error")
     })
+    
     public ResponseEntity<User> findByEmail (@PathVariable ("email") String email){
         try {
             User user = userService.findByEmail(email);

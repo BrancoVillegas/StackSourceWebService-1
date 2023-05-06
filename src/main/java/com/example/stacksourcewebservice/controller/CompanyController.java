@@ -55,6 +55,7 @@ public class CompanyController {
             @ApiResponse(code = 404, message = "Company Not Found"),
             @ApiResponse(code = 501, message = "Internal Server Error")
     })
+    
     public ResponseEntity<Company> findCompanyById(@PathVariable("id") Long id){
         try {
             Optional<Company> company = companyService.getById(id);
@@ -72,6 +73,7 @@ public class CompanyController {
             @ApiResponse(code = 400, message = "Bad Request"),
             @ApiResponse(code = 501, message = "Internal Server Error")
     })
+
     public ResponseEntity<Company> createCompany(@Valid @RequestBody Company company){
         try {
             Company companyCreate = companyService.save(company);
@@ -88,6 +90,7 @@ public class CompanyController {
             @ApiResponse(code = 400, message = "Bad Request"),
             @ApiResponse(code = 501, message = "Internal Server Error")
     })
+
     public ResponseEntity<Company> updateCompany(@PathVariable("id") Long id, @Valid @RequestBody Company company){
         try {
             Optional<Company> existingCompany = companyService.getById(id);
@@ -109,6 +112,7 @@ public class CompanyController {
             @ApiResponse(code = 404, message = "Company Not Found"),
             @ApiResponse(code = 501, message = "Internal Server Error")
     })
+
     public ResponseEntity<Company> deleteCompany(@PathVariable("id") Long id){
         try {
             Optional<Company> company = companyService.getById(id);
