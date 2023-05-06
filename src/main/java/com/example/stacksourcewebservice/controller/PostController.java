@@ -21,6 +21,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/v1/posts")
 @Api(tags = "Posts", value = "Web Service RESTFul of Posts")
+
 public class PostController {
     private final IPostService postService;
     private final ICompanyService companyService;
