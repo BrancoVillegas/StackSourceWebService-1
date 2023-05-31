@@ -189,4 +189,15 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @PostMapping("/login")
+    public ResponseEntity<User> login(@RequestBody UserCredentials credentials) {
+        if (authenticate(credentials.getUsername(), credentials.getPassword())) {
+                // Generar el token JWT
+           String token = JwtUtils.generateToken(credentials.getUsername());
+                // Devolver el token en la respuesta
+           return ResponseEntity.ok(token);
+            } else {
+                return ResponseEntity.status(401).body("Invalid token");
+            }
+        }
 }
