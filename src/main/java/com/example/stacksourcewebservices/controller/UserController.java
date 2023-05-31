@@ -12,8 +12,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.ws.rs.core.Response;
 import java.util.List;
 import java.util.Optional;
+
+import static com.example.stacksourcewebservices.util.WebTokenSecurity.generateToken;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -62,7 +65,16 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody String Email , String Password) throws Exception {
+        User user = userService.findByEmail(Email);
+        if(user!= null && user.getPassword().equals(Password)){
+            String token = generateToken(Email);
+            return ResponseEntity.ok(token);
+        } else{
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+    }
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Search User by Id", notes = "Method for find a User by id")
     @ApiResponses({

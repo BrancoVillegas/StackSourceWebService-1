@@ -7,6 +7,7 @@ import java.util.Date;
 import java.security.SecureRandom;
 import java.util.Base64;
 public class WebTokenSecurity {
+
     public static String generateSecretKey() {
         byte[] keyBytes = new byte[64];
         SecureRandom secureRandom = new SecureRandom();
