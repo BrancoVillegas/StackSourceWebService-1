@@ -4,9 +4,16 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import java.util.Date;
-
+import java.security.SecureRandom;
+import java.util.Base64;
 public class WebTokenSecurity {
-    private static final String SECRET_KEY = "miClaveSecreta";
+    public static String generateSecretKey() {
+        byte[] keyBytes = new byte[64];
+        SecureRandom secureRandom = new SecureRandom();
+        secureRandom.nextBytes(keyBytes);
+        return Base64.getEncoder().encodeToString(keyBytes);
+    }
+    private static final String SECRET_KEY = generateSecretKey();
     private static final long EXPIRATION_TIME = 3600000; // 1 hora
 
     public static String generateToken(String email) {
