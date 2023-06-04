@@ -20,7 +20,7 @@ public class Education implements Serializable {
     private Long id;
     @Column(name = "carreer", nullable = false, length = 50)
     private String career;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "digital_profile_id", nullable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private DigitalProfile digitalProfile;
